@@ -10,6 +10,8 @@ class ArticlesController < ApplicationController
     end
 
     def new
+        # ※'if @article.errors.any?' in the new page makes an error, because when you redirect the new page, @article is not yet defined.
+        # So, to prevent the Nil Error when showing the new page, you should make an instance.
         @article = Article.new
     end
 

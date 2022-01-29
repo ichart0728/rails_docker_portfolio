@@ -1,6 +1,6 @@
 <h1>Create New Article</h1>
 
-<% #scope: ': Model name' url : where this submits to, local: post this form using HttpPost %>
+<% #scope: :'Model name' url: 'Prefix name'_path(in this case, you should specify the index's Prefix), local: post this form using HttpPost %>
 <%= form_with scope: :article, url: articles_path, local: true do |f| %>
     <p>
         <%= f.label :title %><br/>

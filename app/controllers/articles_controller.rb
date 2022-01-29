@@ -14,6 +14,11 @@ class ArticlesController < ApplicationController
     end
 
     def create
-        
+        # To whitelist what's comming in from the the web by using params.require(:'specify the top level of key').permit('specefy the keys that you wants to permit')
+        @article = Article.new(params.require(:article).permit(:title, :description))
+        @article.save
+        #redirect_to 'Prefix_path of the page you want to redirect(in this case, you should specify the show page's Prefix and provide id)'
+        # Or also you can write like 'redirect_to @article'
+        redirect_to @article
     end
 end

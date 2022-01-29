@@ -1,0 +1,17 @@
+<h1>Create New Article</h1>
+
+<% #scope: ': Model name' url : where this submits to, local: post this form using HttpPost %>
+<%= form_with scope: :article, url: articles_path, local: true do |f| %>
+    <p>
+        <%= f.label :title %><br/>
+        <%= f.text_field :title %>
+    </p>
+
+    <p>
+        <%= f.label :description %><br/>
+        <%= f.text_field :description %>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>

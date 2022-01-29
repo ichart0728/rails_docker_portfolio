@@ -10,15 +10,23 @@ class ArticlesController < ApplicationController
     end
 
     def new
-
+        # ※'if @article.errors.any?' in the new page makes an error, because when you redirect the new page, @article is not yet defined.
+        # So, to prevent the Nil Error when showing the new page, you should make an instance.
+        @article = Article.new
     end
 
     def create
         # To whitelist what's comming in from the the web by using params.require(:'specify the top level of key').permit('specefy the keys that you wants to permit')
         @article = Article.new(params.require(:article).permit(:title, :description))
-        @article.save
-        #redirect_to 'Prefix_path of the page you want to redirect(in this case, you should specify the show page's Prefix and provide id)'
-        # Or also you can write like 'redirect_to @article'
-        redirect_to @article
+
+        if @article.save
+            flash[:notice] = "Article was saved successfully. "
+            #redirect_to 'Prefix_path of the page you want to redirect(in this case, you should specify the show page's Prefix and provide id)'
+            # Or also you can write like 'redirect_to @article'
+            redirect_to @article
+        else
+            # @article(instance variables that are made in this method) is gonna be available in new page
+            render 'new'
+        end
     end
 end

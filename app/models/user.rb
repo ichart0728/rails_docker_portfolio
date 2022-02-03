@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-    # 'self' is referencing each ofject of the U ser class
+    # 'self' is referencing each ofject of the User class
     before_save { self.email = email.downcase}
     has_many :articles
     validates :username, presence: true, 

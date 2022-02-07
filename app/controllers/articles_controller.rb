@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
         # To whitelist what's comming in from the the web by using params.require(:'specify the top level of key').permit('specefy the keys that you wants to permit')
         @article = Article.new(article_params)
         # temporarily hard coding
-        @article.user_id = User.first.id
+        @article.user = current_user
         if @article.save
             flash[:notice] = "Article was saved successfully. "
             #redirect_to 'Prefix_path of the page you want to redirect(in this case, you should specify the show page's Prefix and provide id)'

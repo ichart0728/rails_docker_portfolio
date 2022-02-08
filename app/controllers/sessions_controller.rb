@@ -12,10 +12,10 @@ class SessionsController < ApplicationController
             flash[:notice] = "Logged in successfully"
             redirect_to user
         else
-            render 'new'
             # flash[:notice or alert] => It'll disappear after next action
             # flash.now[:notice or alert] => It'll disappear after moving to next action
             flash.now[:alert] = "There was something wrong with your login details"
+            render 'new'
         end
     end
 

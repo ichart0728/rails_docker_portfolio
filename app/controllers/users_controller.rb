@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     def destroy
         @user.destroy
         # after you delete user, layouts won't find the user_id(Error occurred in current_user method). So you have to set nil to session[:user_id]
-        session[:user_id] = nil
+        session[:user_id] = nil if !current_user.admin?
         flash[:notice] = "Account and all associated articles successfully deleted"
         redirect_to articles_path
     end
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     end
 
     def require_same_user
-        if current_user != @user
+        if current_user != @user && !current_user.admin?
                 flash[:alert] = "You can only edit or delete your own account"
                 redirect_to @user
         end

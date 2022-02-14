@@ -1,5 +1,5 @@
 <div class="container">
-  # name : it retrieve flash[:"here"]
+  <% # name : it retrieve flash[:"here"] %>
   <% flash.each do |name, msg| %>
     <div class="alert alert-<%= name == "notice" ? "success" : "danger" %> success alert-dismissible fade show" role="alert">
       <%= msg %>
